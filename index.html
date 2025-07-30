@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Мирвелов Руслан — Бизнес-аналитик / Разработчик</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white transition-colors">
+    <div class="container mx-auto px-4 py-10">
+
+        <!-- Hero-секция -->
+        <section class="text-center">
+            <h1 class="text-4xl font-bold">Мирвелов Руслан</h1>
+            <p class="text-xl mt-2">Бизнес-аналитик / разработчик</p>
+            <div class="mt-4 w-40 h-40 bg-gray-300 rounded-full mx-auto flex items-center justify-center text-gray-600">
+                Фото
+            </div>
+        </section>
+
+        <!-- О себе -->
+        <section class="mt-10">
+            <h2 class="text-2xl font-semibold mb-2">Обо мне</h2>
+            <p>Менеджер IT-проектов с опытом аналитики больших данных, проектирования ИС и межведомственного
+                взаимодействия на государственном уровне.</p>
+        </section>
+
+        <!-- Навыки -->
+        <section class="mt-10">
+            <h2 class="text-2xl font-semibold mb-2">Навыки</h2>
+            <ul class="list-disc list-inside">
+                <li>Microsoft Office (Word, Excel, PowerPoint)</li>
+                <li>Python</li>
+                <li>SQL</li>
+                <li>Анализ больших данных</li>
+                <li>Проектирование архитектуры ИС</li>
+                <li>Документарное сопровождение проектов</li>
+            </ul>
+        </section>
+
+        <!-- Опыт работы -->
+        <section class="mt-10">
+            <h2 class="text-2xl font-semibold mb-2">Опыт работы</h2>
+            <ul class="space-y-2">
+                <li><strong>Объединение административно-технических инспекций г. Москвы</strong> — Советник Отдела (с
+                    11.2024 по н.в.)</li>
+                <li><strong>Минэкономразвития России</strong> — Советник Департамента (с 07.2023 по 11.2024)</li>
+                <li><strong>Фонд «Центр стратегических разработок»</strong> — Аналитик (05.2022 – 07.2023)</li>
+            </ul>
+        </section>
+
+        <!-- Контакты -->
+        <section class="mt-10">
+            <h2 class="text-2xl font-semibold mb-2">Контакты</h2>
+            <ul>
+                <li>Email: <a href="mailto:ruslan@mirvelov.ru" class="text-blue-500">ruslan@mirvelov.ru</a></li>
+                <li>Телефон: <a href="tel:+79032274106" class="text-blue-500">+7 (903) 227-41-06</a></li>
+                <li>Telegram: <a href="https://t.me/MirRappo" class="text-blue-500">@MirRappo</a></li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        const btn = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        btn.addEventListener('click', () => {
+            html.classList.toggle('dark');
+        });
+    </script>
+</body>
+
+</html>
