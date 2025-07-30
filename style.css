@@ -490,7 +490,7 @@ textarea.input { padding: 0.8rem 1.2rem; min-height: 140px; border-radius: .5rem
 }
 
 @media screen and (max-width: 350px) {
-    .container { margin-left: var(--mb1); margin-left: var(--mb1); }
+    .container { margin-left: var(--mb1); margin-right: var(--mb1); }
     .home-img { width: 200px; }
     .home-title { font-size: var(--h1-font-size); }
     .home-subtitle { font-size: var(--normal-font-size); }
