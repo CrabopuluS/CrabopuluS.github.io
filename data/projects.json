@@ -1,0 +1,16 @@
+{
+  "projects": [
+    {
+      "title": "Проект 1",
+      "description": "Краткое описание проекта.",
+      "image": "images/project1.jpg",
+      "link": "#"
+    },
+    {
+      "title": "Проект 2",
+      "description": "Краткое описание проекта.",
+      "image": "images/project2.jpg",
+      "link": "#"
+    }
+  ]
+}
