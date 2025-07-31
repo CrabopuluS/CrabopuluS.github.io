@@ -60,11 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 5. Инициализация фоновых анимаций, если подключены
+  // 5. Инициализация фоновой анимации пузырьков
   if (typeof initBubbles === 'function') {
     initBubbles();
-  }
-  if (typeof initParallax === 'function') {
-    initParallax();
   }
 });
