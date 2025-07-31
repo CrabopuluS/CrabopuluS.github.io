@@ -37,7 +37,7 @@ function initBubbles() {
       }
       ctx.beginPath();
       ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(74, 144, 226, ${b.o})`;
+      ctx.fillStyle = `rgba(58, 141, 255, ${b.o})`;
       ctx.fill();
     });
     requestAnimationFrame(update);
