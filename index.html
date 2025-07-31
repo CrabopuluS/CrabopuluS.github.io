@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Имя Фамилия — Портфолио & Резюме</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <!-- Header / Навигация -->
-    <header>
-        <nav class="nav">
-            <ul>
+    <canvas id="bubbles-canvas"></canvas>
+    <header class="header">
+        <nav class="nav container">
+            <a href="#" class="logo">Имя Фамилия</a>
+            <button class="menu-toggle" aria-label="Меню">&#9776;</button>
+            <ul class="nav-list">
                 <li><a href="#about">Обо мне</a></li>
                 <li><a href="#projects">Проекты</a></li>
                 <li><a href="#resume">Резюме</a></li>
@@ -21,54 +21,43 @@
         </nav>
     </header>
 
-    <!-- Основной контент -->
     <main>
-        <!-- Секция «Обо мне» -->
-        <section id="about" class="section about">
+        <section id="about" class="section about container">
+            <img src="images/avatar.jpg" alt="Имя Фамилия" class="avatar">
             <h1>Привет, я Имя Фамилия</h1>
             <p>Краткое описание: кто вы, ваша специализация и ключевые навыки.</p>
-            <!-- Добавьте фото, списки навыков и т.д. -->
         </section>
 
-        <!-- Секция «Проекты» -->
-        <section id="projects" class="section projects">
+        <section id="projects" class="section projects container">
             <h2>Мои проекты</h2>
-            <div class="projects-container">
-                <!-- JavaScript подгрузит карточки проектов из data/projects.json -->
-            </div>
+            <div class="projects-container"><!-- Карточки будут загружены скриптом --></div>
         </section>
 
-        <!-- Секция «Резюме» -->
-        <section id="resume" class="section resume">
+        <section id="resume" class="section resume container">
             <h2>Резюме</h2>
             <p>Краткая выжимка профессионального опыта и образования.</p>
-            <a href="resume.pdf" target="_blank" rel="noopener">Скачать полную версию (PDF)</a>
+            <a href="resume.pdf" target="_blank" rel="noopener" class="btn">Скачать PDF</a>
         </section>
 
-        <!-- Секция «Контакты» -->
-        <section id="contact" class="section contact">
+        <section id="contact" class="section contact container">
             <h2>Контакты</h2>
-            <form id="contact-form">
-                <label for="name">Имя:</label>
+            <form id="contact-form" class="contact-form">
+                <label for="name">Имя</label>
                 <input type="text" id="name" name="name" required>
-
-                <label for="email">Email:</label>
+                <label for="email">Email</label>
                 <input type="email" id="email" name="email" required>
-
-                <label for="message">Сообщение:</label>
+                <label for="message">Сообщение</label>
                 <textarea id="message" name="message" rows="4" required></textarea>
-
-                <button type="submit">Отправить</button>
+                <button type="submit" class="btn">Отправить</button>
             </form>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <p>&copy; 2025 Имя Фамилия. Все права защищены.</p>
     </footer>
 
     <script src="script.js"></script>
+    <script src="bubbles.js"></script>
 </body>
-
 </html>
