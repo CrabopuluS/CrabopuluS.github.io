@@ -59,8 +59,23 @@ document.addEventListener('DOMContentLoaded', () => {
       contactForm.reset();
     });
   }
+  // 5. Анимация меню статов
+  const statsSection = document.getElementById("stats");
+  if (statsSection) {
+    const observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        statsSection.querySelectorAll(".stat-bar-fill").forEach(bar => {
+          const level = bar.dataset.level || "0";
+          bar.style.width = level + "%";
+        });
+        observer.disconnect();
+      }
+    }, { threshold: 0.3 });
+    observer.observe(statsSection);
+  }
 
-  // 5. Инициализация фоновой анимации пузырьков
+
+  // 6. Инициализация фоновой анимации пузырьков
   if (typeof initBubbles === 'function') {
     initBubbles();
   }
