@@ -1,0 +1,191 @@
+/* Базовые переменные и сброс стилей */
+:root {
+    --color-primary: #4a90e2;
+    --color-light: #f9f9f9;
+    --color-dark: #333;
+    --font-sans: 'Helvetica Neue', Arial, sans-serif;
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--color-dark);
+    background-color: var(--color-light);
+    overflow-x: hidden;
+}
+
+/* Фоновые анимации */
+#bubbles-canvas,
+#parallax-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+.nav.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-list a {
+    text-decoration: none;
+    color: var(--color-dark);
+    transition: color var(--transition-speed);
+}
+
+.nav-list a:hover {
+    color: var(--color-primary);
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Контейнеры секций */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 6rem 1rem 2rem;
+}
+
+.section {
+    padding: 6rem 0;
+    position: relative;
+}
+
+.section h1,
+.section h2 {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    text-align: center;
+}
+
+.section p {
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* «Обо мне» */
+.about .avatar {
+    display: block;
+    margin: 2rem auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--color-primary);
+}
+
+/* Проекты */
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* Кнопки */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-primary);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background var(--transition-speed);
+}
+
+.btn:hover {
+    background: #417dc1;
+}
+
+/* Форма контактов */
+.contact-form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-form label {
+    font-weight: 600;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* Footer */
+.footer {
+    background: var(--color-dark);
+    color: #fff;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-list {
+        display: none;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.9);
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 200px;
+        padding: 1rem;
+    }
+
+    .nav-list.open {
+        display: flex;
+    }
+}
