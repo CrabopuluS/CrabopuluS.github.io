@@ -1,7 +1,7 @@
 /* Базовые переменные и сброс стилей */
 :root {
-    --color-primary: #4a90e2;
-    --color-light: #f9f9f9;
+    --color-primary: #000000;
+    --color-light: #ffffff;
     --color-dark: #333;
     --font-sans: 'Helvetica Neue', Arial, sans-serif;
     --transition-speed: 0.3s;
@@ -160,7 +160,7 @@ body {
 }
 
 .btn:hover {
-    background: #417dc1;
+    background: #008106;
 }
 
 /* Форма контактов */
