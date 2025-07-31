@@ -1,148 +1,68 @@
-diff --git a/index.html b/index.html
-index f1419a2c906dadff571a176c9b56434b32e1baa4..7733a009973e642f35ea36cd4cfe0ca25b4cb119 100644
---- a/index.html
-+++ b/index.html
-@@ -1,74 +1,66 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    -
     <meta charset="UTF-8">
-    -
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    - <title>Имя Фамилия — Портфолио & Резюме</title>
-    -
-    <link rel="stylesheet" href="style.css">
-    +
-    <meta charset="UTF-8">
-    +
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    + <title>Имя Фамилия — Портфолио &amp; Резюме</title>
-    +
+    <title>Имя Фамилия — Портфолио &amp; Резюме</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    +
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    +
     <link rel="stylesheet" href="style.css">
 </head>
--
-
 <body>
-    - <!-- Header / Навигация -->
-    - <header>
-        - <nav class="nav">
-            - <ul>
-                - <li><a href="#about">Обо мне</a></li>
-                - <li><a href="#projects">Проекты</a></li>
-                - <li><a href="#resume">Резюме</a></li>
-                - <li><a href="#contact">Контакты</a></li>
-                - </ul>
-            - </nav>
-        - </header>
-    -
-    - <!-- Основной контент -->
-    - <main>
-        - <!-- Секция «Обо мне» -->
-        - <section id="about" class="section about">
-            - <h1>Привет, я Имя Фамилия</h1>
-            - <p>Краткое описание: кто вы, ваша специализация и ключевые навыки.</p>
-            - <!-- Добавьте фото, списки навыков и т.д. -->
-            - </section>
-        -
-        - <!-- Секция «Проекты» -->
-        - <section id="projects" class="section projects">
-            - <h2>Мои проекты</h2>
-            - <div class="projects-container">
-                - <!-- JavaScript подгрузит карточки проектов из data/projects.json -->
-                - </div>
-            - </section>
-        -
-        - <!-- Секция «Резюме» -->
-        - <section id="resume" class="section resume">
-            - <h2>Резюме</h2>
-            - <p>Краткая выжимка профессионального опыта и образования.</p>
-            - <a href="resume.pdf" target="_blank" rel="noopener">Скачать полную версию (PDF)</a>
-            - </section>
-        -
-        - <!-- Секция «Контакты» -->
-        - <section id="contact" class="section contact">
-            - <h2>Контакты</h2>
-            - <form id="contact-form">
-                - <label for="name">Имя:</label>
-                - <input type="text" id="name" name="name" required>
-                -
-                - <label for="email">Email:</label>
-                - <input type="email" id="email" name="email" required>
-                -
-                - <label for="message">Сообщение:</label>
-                - <textarea id="message" name="message" rows="4" required></textarea>
-                -
-                - <button type="submit">Отправить</button>
-                - </form>
-            - </section>
-        - </main>
-    -
-    - <!-- Footer -->
-    - <footer>
-        - <p>&copy; 2025 Имя Фамилия. Все права защищены.</p>
-        - </footer>
-    -
-    -
-    <script src="script.js"></script>
-    + <canvas id="bubbles-canvas" class="animated-background" aria-hidden="true"></canvas>
-    + <header class="header">
-        + <nav class="nav container">
-            + <a href="#" class="logo">Имя Фамилия</a>
-            + <button class="menu-toggle" aria-label="Меню">&#9776;</button>
-            + <ul class="nav-list">
-                + <li><a href="#about">Обо мне</a></li>
-                + <li><a href="#projects">Проекты</a></li>
-                + <li><a href="#resume">Резюме</a></li>
-                + <li><a href="#contact">Контакты</a></li>
-                + </ul>
-            + </nav>
-        + </header>
-    + <main>
-        + <section id="about" class="section about">
-            + <div class="container">
-                + <img src="images/placeholder.png" alt="Фото" class="avatar">
-                + <h1>Привет, я Имя Фамилия</h1>
-                + <p>Краткое описание: кто вы, ваша специализация и ключевые навыки.</p>
-                + </div>
-            + </section>
-        + <section id="projects" class="section projects">
-            + <div class="container">
-                + <h2>Мои проекты</h2>
-                + <div class="projects-container"></div>
-                + </div>
-            + </section>
-        + <section id="resume" class="section resume">
-            + <div class="container">
-                + <h2>Резюме</h2>
-                + <p>Краткая выжимка профессионального опыта и образования.</p>
-                + <a href="resume.pdf" class="btn" target="_blank" rel="noopener">Скачать полную версию (PDF)</a>
-                + </div>
-            + </section>
-        + <section id="contact" class="section contact">
-            + <div class="container">
-                + <h2>Контакты</h2>
-                + <form id="contact-form" class="contact-form">
-                    + <label for="name">Имя:</label>
-                    + <input type="text" id="name" name="name" required>
-                    + <label for="email">Email:</label>
-                    + <input type="email" id="email" name="email" required>
-                    + <label for="message">Сообщение:</label>
-                    + <textarea id="message" name="message" rows="4" required></textarea>
-                    + <button type="submit" class="btn">Отправить</button>
-                    + </form>
-                + </div>
-            + </section>
-        + </main>
-    + <footer class="footer">
-        + <p>&copy; 2025 Имя Фамилия. Все права защищены.</p>
-        + </footer>
-    +
+    <canvas id="bubbles-canvas" class="animated-background" aria-hidden="true"></canvas>
+    <header class="header">
+        <nav class="nav container">
+            <a href="#" class="logo">Имя Фамилия</a>
+            <button class="menu-toggle" aria-label="Меню">&#9776;</button>
+            <ul class="nav-list">
+                <li><a href="#about">Обо мне</a></li>
+                <li><a href="#projects">Проекты</a></li>
+                <li><a href="#resume">Резюме</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="about" class="section about">
+            <div class="container">
+                <img src="images/avatar.jpg" alt="Имя Фамилия" class="avatar">
+                <h1>Привет, я Имя Фамилия</h1>
+                <p>Краткое описание: кто вы, ваша специализация и ключевые навыки.</p>
+            </div>
+        </section>
+        <section id="projects" class="section projects">
+            <div class="container">
+                <h2>Мои проекты</h2>
+                <div class="projects-container"></div>
+            </div>
+        </section>
+        <section id="resume" class="section resume">
+            <div class="container">
+                <h2>Резюме</h2>
+                <p>Краткая выжимка профессионального опыта и образования.</p>
+                <a href="resume.pdf" class="btn" target="_blank" rel="noopener">Скачать полную версию (PDF)</a>
+            </div>
+        </section>
+        <section id="contact" class="section contact">
+            <div class="container">
+                <h2>Контакты</h2>
+                <form id="contact-form" class="contact-form">
+                    <label for="name">Имя:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="message">Сообщение:</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                    <button type="submit" class="btn">Отправить</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>&copy; 2025 Имя Фамилия. Все права защищены.</p>
+    </footer>
     <script src="script.js"></script>
     <script src="bubbles.js"></script>
 </body>
 </html>
+
