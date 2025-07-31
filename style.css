@@ -4,6 +4,7 @@
     --hue-color: 242;
 
     --skin-color: hsl(113, 88%, 30%);
+    --skin-color: hsl(110, 100%, 25%);
     --mirage-color: hsl(210, 10%, 23%);
     --title-color: hsl(var(--hue-color), 8%, 95%);
     --text-color: hsl(var(--hue-color), 8%, 85%);
