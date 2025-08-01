@@ -193,49 +193,46 @@ body {
     color: var(--color-text-primary);
 }
 
-/* Меню статов */
-.stats-list {
-    max-width: 600px;
-    margin: 0 auto;
+.doing h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.doing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.doing-card {
+    background: #1a1c23;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.card-top {
     display: flex;
-    flex-direction: column;
+    align-items: center;
     gap: 1rem;
 }
 
-.stat-item {
-    display: flex;
-    flex-direction: column;
+.doing-icon {
+    width: 40px;
+    height: 40px;
+    stroke: #facc15;
 }
 
-.stat-name {
-    margin-bottom: 0.25rem;
+.doing-title {
+    font-size: 1.125rem;
     font-weight: 600;
-}
-
-.stat-bar {
-    position: relative;
-    background: var(--color-neutral);
-    height: 24px;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.stat-bar-fill {
-    background: var(--color-accent-turquoise);
-    height: 100%;
-    width: 0;
-    transition: width var(--transition-speed);
-    position: relative;
-}
-
-.stat-bar-fill::after {
-    content: attr(data-level) "%";
-    position: absolute;
-    right: 8px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 0.75rem;
     color: var(--color-text-primary);
+}
+
+.doing-desc {
+    margin-top: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
 }
 
 /* Резюме */
