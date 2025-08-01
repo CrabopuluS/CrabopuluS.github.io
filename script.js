@@ -5,9 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. Toggle мобильного меню
   const menuToggle = document.querySelector('.menu-toggle');
   const navList = document.querySelector('.nav-list');
-  if (menuToggle) {
+  if (menuToggle && navList) {
     menuToggle.addEventListener('click', () => {
-      navList.classList.toggle('open');
+      const expanded = navList.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', expanded);
     });
   }
 
@@ -20,8 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
         target.scrollIntoView({ behavior: 'smooth' });
       }
       // Закрыть мобильное меню после клика
-      if (navList.classList.contains('open')) {
+      if (navList && navList.classList.contains('open')) {
         navList.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', false);
       }
     });
   });
@@ -30,7 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const projectsContainer = document.querySelector('.projects-container');
   if (projectsContainer) {
     fetch('data/projects.json')
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error ${response.status}`);
+        }
+        return response.json();
+      })
       .then(data => {
         data.projects.forEach(project => {
           const card = document.createElement('div');
@@ -40,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="project-info">
               <h3 class="project-title">${project.title}</h3>
               <p class="project-desc">${project.description}</p>
-              <a href="${project.link}" class="project-link" target="_blank" rel="noopener">Перейти</a>
+              <a href="${project.link}" class="project-link" target="_blank" rel="noopener noreferrer">Перейти</a>
             </div>
           `;
           projectsContainer.append(card);

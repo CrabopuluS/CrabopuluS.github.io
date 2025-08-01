@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self'; font-src https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' https://fonts.googleapis.com; script-src 'self';">
     <title>Руслан Мирвелов — Портфолио &amp; Резюме</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,7 +15,7 @@
     <header class="header">
         <nav class="nav container">
             <a href="#" class="logo">Руслан Мирвелов</a>
-            <button class="menu-toggle" aria-label="Меню">&#9776;</button>
+            <button class="menu-toggle" aria-label="Меню" aria-expanded="false">&#9776;</button>
             <ul class="nav-list">
                 <li><a href="#about">
                     <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -151,7 +153,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="resume.pdf" class="btn" target="_blank" rel="noopener">Скачать полную версию (PDF)</a>
+                <a href="resume.pdf" class="btn" target="_blank" rel="noopener noreferrer">Скачать полную версию (PDF)</a>
             </div>
         </section>
         <section id="contact" class="section contact">
