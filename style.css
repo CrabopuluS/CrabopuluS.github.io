@@ -368,6 +368,20 @@ body {
     color: var(--color-text-primary);
 }
 
+/* Game section */
+.section.game {
+    text-align: center;
+}
+
+.game-frame {
+    width: 100%;
+    max-width: 800px;
+    height: 500px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
 /* Footer */
 .footer {
     background: var(--color-bg-secondary);
@@ -411,6 +425,10 @@ body {
         max-height: 500px;
         opacity: 1;
         transform: translateY(0);
+    }
+
+    .game-frame {
+        height: 300px;
     }
 }
 
