@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           const link = document.createElement("a");
           link.href = project.link;
-          link.className = "project-link";
+          link.className = "project-link btn";
           link.target = "_blank";
           link.rel = "noopener noreferrer";
           link.textContent = "Перейти";
