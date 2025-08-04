@@ -379,6 +379,10 @@ body {
     text-align: center;
 }
 
+#tower-wrapper {
+    margin-top: 1rem;
+}
+
 .game-frame {
     width: 100%;
     max-width: 800px;

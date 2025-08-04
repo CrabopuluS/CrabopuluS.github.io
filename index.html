@@ -206,8 +206,10 @@
         </section>
         <section id="game" class="section game">
             <div class="container">
-                <h2>Мини-игра</h2>
-                <iframe src="Tower/index.html" title="Tower game" class="game-frame" loading="lazy" sandbox="allow-same-origin allow-scripts"></iframe>
+                <button id="tower-toggle" class="btn" aria-expanded="false">Башенка</button>
+                <div id="tower-wrapper" hidden>
+                    <iframe src="Tower/index.html" title="Tower game" class="game-frame" loading="lazy" sandbox="allow-same-origin allow-scripts"></iframe>
+                </div>
             </div>
         </section>
     </main>
