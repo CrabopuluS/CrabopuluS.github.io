@@ -1,9 +1,9 @@
 /* Базовые переменные и сброс стилей */
 :root {
-    --color-bg-primary: #0D0F14;
-    --color-bg-secondary: #1E222A;
-    --color-text-primary: #E4E6EB;
-    --color-text-secondary: #A3A6B0;
+    --color-bg-primary: #0C111A;
+    --color-bg-secondary: #1A1F27;
+    --color-text-primary: #F2F4F8;
+    --color-text-secondary: #B0B4C0;
     --color-accent-blue: #3A8DFF;
     --color-accent-turquoise: #00C4B3;
     --color-accent-orange: #FF8C42;
@@ -21,7 +21,9 @@
 body {
     font-family: var(--font-sans);
     color: var(--color-text-primary);
-    background: var(--color-bg-primary);
+    background: linear-gradient(135deg, var(--color-bg-primary) 0%, #141820 100%);
+    font-size: 16px;
+    line-height: 1.6;
     overflow-x: hidden;
     margin-left: 160px; /* место для более узкого вертикального меню */
 }
@@ -35,6 +37,11 @@ body {
     width: 100vw;
     height: 100vh;
     z-index: -1;
+}
+
+.animated-background {
+    opacity: 0.2;
+    filter: blur(1px);
 }
 
 /* Header */
@@ -76,8 +83,9 @@ body {
     transform: rotate(10deg);
 }
 
+/* Кнопка меню отображается только на мобильных устройствах */
 .menu-toggle {
-    display: block;
+    display: none;
     font-size: 1.5rem;
     background: none;
     border: none;
@@ -85,24 +93,13 @@ body {
     color: var(--color-text-primary);
 }
 
-/* Анимация открытия меню */
+/* Список навигации открыт по умолчанию на десктопе */
 .nav-list {
     list-style: none;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     width: 100%;
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: max-height var(--transition-speed) ease, opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
-}
-
-.nav-list.open {
-    max-height: 500px;
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .nav-list a {
@@ -146,12 +143,21 @@ body {
     text-align: center;
 }
 
+.section h1 {
+    font-size: 2rem;
+}
+
+.section h2 {
+    font-size: 1.75rem;
+}
+
 .section p {
     max-width: 700px;
     margin: 0 auto 2rem;
     line-height: 1.6;
     text-align: center;
     color: var(--color-text-secondary);
+    font-size: 1rem;
 }
 
 /* «Обо мне» */
@@ -379,8 +385,23 @@ body {
         align-items: center;
     }
 
+    .menu-toggle {
+        display: block;
+    }
+
     .nav-list {
         width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: max-height var(--transition-speed) ease, opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
+    }
+
+    .nav-list.open {
+        max-height: 500px;
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 

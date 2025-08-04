@@ -16,9 +16,9 @@ function initBubbles() {
     return {
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      r: 10 + Math.random() * 20,
-      s: 1 + Math.random() * 2,
-      o: 0.2 + Math.random() * 0.3
+      r: 5 + Math.random() * 15,
+      s: 0.5 + Math.random() * 1.5,
+      o: 0.1 + Math.random() * 0.2
     };
   }
 
