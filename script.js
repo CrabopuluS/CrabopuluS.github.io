@@ -95,8 +95,24 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.reset();
       });
     }
-  // 5. Инициализация фоновой анимации пузырьков
-  if (typeof initBubbles === 'function') {
-    initBubbles();
-  }
-});
+    // 5. Инициализация фоновой анимации пузырьков
+    if (typeof initBubbles === 'function') {
+      initBubbles();
+    }
+
+    // 6. Показ/скрытие игры Tower
+    const towerToggle = document.getElementById('tower-toggle');
+    const towerWrapper = document.getElementById('tower-wrapper');
+    if (towerToggle && towerWrapper) {
+      towerToggle.addEventListener('click', () => {
+        const isHidden = towerWrapper.hasAttribute('hidden');
+        if (isHidden) {
+          towerWrapper.removeAttribute('hidden');
+          towerToggle.setAttribute('aria-expanded', 'true');
+        } else {
+          towerWrapper.setAttribute('hidden', '');
+          towerToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+  });
