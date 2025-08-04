@@ -12,10 +12,11 @@
 </head>
 <body>
     <canvas id="bubbles-canvas" class="animated-background" aria-hidden="true"></canvas>
+    <noscript>Для корректной работы сайта включите JavaScript.</noscript>
     <header class="header">
         <nav class="nav container">
             <a href="#" class="logo" aria-label="Логотип RA">
-                <img src="images/Logo.png" alt="Логотип RA">
+                <img src="images/Logo.png" alt="Логотип RA" loading="lazy">
             </a>
             <button class="menu-toggle" aria-label="Меню" aria-expanded="false">&#9776;</button>
             <ul class="nav-list">
@@ -60,7 +61,7 @@
     <main>
         <section id="about" class="section about">
             <div class="container">
-                <img src="images/avatar.png" alt="Руслан Мирвелов" class="avatar">
+                <img src="images/avatar.png" alt="Руслан Мирвелов" class="avatar" loading="lazy">
                 <h1>Привет, я Руслан Мирвелов!</h1>
                 <p>Я бизнес-аналитик с опытом работы в 4 года. Вел разработку 2-х федеральных государственных реестров и региональной ведомственной информационной системы.</p>
             </div>
@@ -192,7 +193,7 @@
         <section id="contact" class="section contact">
             <div class="container">
                 <h2>Контакты</h2>
-                <form id="contact-form" class="contact-form">
+                <form id="contact-form" class="contact-form" action="#" method="post" novalidate>
                     <label for="name">Имя:</label>
                     <input type="text" id="name" name="name" required>
                     <label for="email">Email:</label>
@@ -206,15 +207,15 @@
         <section id="game" class="section game">
             <div class="container">
                 <h2>Мини-игра</h2>
-                <iframe src="Tower/index.html" title="Tower game" class="game-frame"></iframe>
+                <iframe src="Tower/index.html" title="Tower game" class="game-frame" loading="lazy" sandbox="allow-same-origin allow-scripts"></iframe>
             </div>
         </section>
     </main>
     <footer class="footer">
         <p>&copy; 2025 Ruslan Mirvelov. Все права защищены.</p>
     </footer>
-    <script src="script.js"></script>
-    <script src="bubbles.js"></script>
+    <script src="script.js" defer></script>
+    <script src="bubbles.js" defer></script>
 </body>
 </html>
 
