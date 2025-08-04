@@ -105,14 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const towerWrapper = document.getElementById('tower-wrapper');
     if (towerToggle && towerWrapper) {
       towerToggle.addEventListener('click', () => {
-        const isHidden = towerWrapper.hasAttribute('hidden');
-        if (isHidden) {
-          towerWrapper.removeAttribute('hidden');
-          towerToggle.setAttribute('aria-expanded', 'true');
-        } else {
-          towerWrapper.setAttribute('hidden', '');
-          towerToggle.setAttribute('aria-expanded', 'false');
-        }
+        towerWrapper.hidden = !towerWrapper.hidden;
+        towerToggle.setAttribute('aria-expanded', String(!towerWrapper.hidden));
       });
     }
   });
