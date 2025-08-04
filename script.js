@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (menuToggle && navList) {
     menuToggle.addEventListener('click', () => {
       const expanded = navList.classList.toggle('open');
-      menuToggle.setAttribute('aria-expanded', expanded);
+      menuToggle.setAttribute('aria-expanded', String(expanded));
     });
   }
 
@@ -21,51 +21,80 @@ document.addEventListener('DOMContentLoaded', () => {
         target.scrollIntoView({ behavior: 'smooth' });
       }
       // Закрыть мобильное меню после клика
-      if (navList && navList.classList.contains('open')) {
-        navList.classList.remove('open');
-        menuToggle.setAttribute('aria-expanded', false);
-      }
+        if (navList && navList.classList.contains('open')) {
+          navList.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
     });
   });
 
   // 3. Загрузка и рендеринг проектов из data/projects.json
-  const projectsContainer = document.querySelector('.projects-container');
-  if (projectsContainer) {
-    fetch('data/projects.json')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error ${response.status}`);
+    const projectsContainer = document.querySelector('.projects-container');
+    if (projectsContainer) {
+      (async () => {
+        try {
+          const response = await fetch('data/projects.json');
+          if (!response.ok) {
+            throw new Error(`HTTP error ${response.status}`);
+          }
+          const data = await response.json();
+          data.projects.forEach(project => {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+
+            const img = document.createElement('img');
+            img.src = project.image;
+            img.alt = project.title;
+            img.className = 'project-image';
+            img.loading = 'lazy';
+
+            const info = document.createElement('div');
+            info.className = 'project-info';
+
+            const title = document.createElement('h3');
+            title.className = 'project-title';
+            title.textContent = project.title;
+
+            const desc = document.createElement('p');
+            desc.className = 'project-desc';
+            desc.textContent = project.description;
+
+            const link = document.createElement('a');
+            link.href = project.link;
+            link.className = 'project-link';
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.textContent = 'Перейти';
+
+            info.append(title, desc, link);
+            card.append(img, info);
+            projectsContainer.append(card);
+          });
+        } catch (error) {
+          console.error('Ошибка загрузки проектов:', error);
         }
-        return response.json();
-      })
-      .then(data => {
-        data.projects.forEach(project => {
-          const card = document.createElement('div');
-          card.className = 'project-card';
-          card.innerHTML = `
-            <img src="${project.image}" alt="${project.title}" class="project-image">
-            <div class="project-info">
-              <h3 class="project-title">${project.title}</h3>
-              <p class="project-desc">${project.description}</p>
-              <a href="${project.link}" class="project-link" target="_blank" rel="noopener noreferrer">Перейти</a>
-            </div>
-          `;
-          projectsContainer.append(card);
-        });
-      })
-      .catch(error => console.error('Ошибка загрузки проектов:', error));
-  }
+      })();
+    }
 
   // 4. Обработка отправки контактной формы
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
-    contactForm.addEventListener('submit', event => {
-      event.preventDefault();
-      // TODO: заменить на реальный отправщик (EmailJS, fetch в API и т.п.)
-      alert('Спасибо! Ваше сообщение отправлено.');
-      contactForm.reset();
-    });
-  }
+      contactForm.addEventListener('submit', event => {
+        event.preventDefault();
+        const name = contactForm.elements['name'].value.trim();
+        const email = contactForm.elements['email'].value.trim();
+        const message = contactForm.elements['message'].value.trim();
+
+        if (!name || !email || !message) {
+          alert('Пожалуйста, заполните все поля.');
+          return;
+        }
+
+        // TODO: заменить на реальный отправщик (EmailJS, fetch в API и т.п.)
+        alert('Спасибо! Ваше сообщение отправлено.');
+        contactForm.reset();
+      });
+    }
   // 5. Инициализация фоновой анимации пузырьков
   if (typeof initBubbles === 'function') {
     initBubbles();
