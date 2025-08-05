@@ -1,92 +1,41 @@
-// Основная логика сайта
-// Подключение интерактивных элементов: меню, навигация, загрузка проектов, форма и инициалиация анимаций
+const { createApp, ref, onMounted } = Vue;
 
-document.addEventListener("DOMContentLoaded", () => {
-  // 1. Toggle мобильного меню
-  const menuToggle = document.querySelector(".menu-toggle");
-  const navList = document.querySelector(".nav-list");
-  if (menuToggle && navList) {
-    menuToggle.addEventListener("click", () => {
-      const expanded = navList.classList.toggle("open");
-      menuToggle.setAttribute("aria-expanded", String(expanded));
-    });
-  }
+createApp({
+  setup() {
+    const isMenuOpen = ref(false);
+    const projects = ref([]);
+    const form = ref({ name: "", email: "", message: "" });
+    const isGameVisible = ref(false);
 
-  // 2. Плавная прокрутка к секциям
-  document.querySelectorAll('nav a[href^="#"]').forEach((link) => {
-    link.addEventListener("click", (event) => {
-      event.preventDefault();
-      const target = document.querySelector(link.getAttribute("href"));
+    const toggleMenu = () => {
+      isMenuOpen.value = !isMenuOpen.value;
+    };
+
+    const scrollTo = (id) => {
+      const target = document.getElementById(id);
       if (target) {
         target.scrollIntoView({ behavior: "smooth" });
       }
-      // Закрыть мобильное меню после клика
-      if (navList && navList.classList.contains("open")) {
-        navList.classList.remove("open");
-        menuToggle.setAttribute("aria-expanded", "false");
-      }
-    });
-  });
+      isMenuOpen.value = false;
+    };
 
-  // 3. Загрузка и рендеринг проектов из data/projects.json
-  const projectsContainer = document.querySelector(".projects-container");
-  if (projectsContainer) {
-    (async () => {
+    const loadProjects = async () => {
       try {
         const response = await fetch("data/projects.json");
-        if (!response.ok) {
-          throw new Error(`HTTP error ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`HTTP error ${response.status}`);
         const data = await response.json();
-        data.projects.forEach((project, index) => {
-          const card = document.createElement("div");
-          card.className = "project-card";
-          card.style.animationDelay = `${index * 0.2}s`;
-
-          const img = document.createElement("img");
-          img.src = project.image;
-          img.alt = project.title;
-          img.className = "project-image";
-          img.loading = "lazy";
-
-          const info = document.createElement("div");
-          info.className = "project-info";
-
-          const title = document.createElement("h3");
-          title.className = "project-title";
-          title.textContent = project.title;
-
-          const desc = document.createElement("p");
-          desc.className = "project-desc";
-          desc.textContent = project.description;
-
-          const link = document.createElement("a");
-          link.href = project.link;
-          link.className = "project-link btn";
-          link.target = "_blank";
-          link.rel = "noopener noreferrer";
-          link.textContent = "Перейти";
-
-          info.append(title, desc, link);
-          card.append(img, info);
-          projectsContainer.append(card);
-        });
-      } catch (error) {
-        console.error("Ошибка загрузки проектов:", error);
+        projects.value = data.projects;
+      } catch (err) {
+        console.error("Ошибка загрузки проектов:", err);
       }
-    })();
-  }
+    };
 
-  // 4. Обработка отправки контактной формы
-  const contactForm = document.getElementById("contact-form");
-  if (contactForm) {
-    contactForm.addEventListener("submit", async (event) => {
-      event.preventDefault();
+    const sanitize = (str) => str.replace(/[<>&]/g, "");
 
-      const sanitize = (str) => str.replace(/[<>&]/g, "");
-      const name = sanitize(contactForm.elements["name"].value.trim());
-      const email = sanitize(contactForm.elements["email"].value.trim());
-      const message = sanitize(contactForm.elements["message"].value.trim());
+    const submitForm = async () => {
+      const name = sanitize(form.value.name.trim());
+      const email = sanitize(form.value.email.trim());
+      const message = sanitize(form.value.message.trim());
 
       if (!name || !email || !message) {
         alert("Пожалуйста, заполните все поля.");
@@ -105,29 +54,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (response.ok) {
           alert("Спасибо! Ваше сообщение отправлено.");
-          contactForm.reset();
+          form.value.name = "";
+          form.value.email = "";
+          form.value.message = "";
         } else {
-          contactForm.submit();
+          document.getElementById("contact-form").submit();
         }
       } catch (error) {
         console.error("Ошибка отправки формы:", error);
         alert("Произошла ошибка при отправке. Попробуйте позже.");
-        contactForm.submit();
+        document.getElementById("contact-form").submit();
+      }
+    };
+
+    const toggleGame = () => {
+      isGameVisible.value = !isGameVisible.value;
+    };
+
+    onMounted(() => {
+      loadProjects();
+      if (typeof initBubbles === "function") {
+        initBubbles();
       }
     });
-  }
-  // 5. Инициализация фоновой анимации пузырьков
-  if (typeof initBubbles === "function") {
-    initBubbles();
-  }
 
-  // 6. Показ/скрытие игры Tower
-  const towerToggle = document.getElementById("tower-toggle");
-  const towerWrapper = document.getElementById("tower-wrapper");
-  if (towerToggle && towerWrapper) {
-    towerToggle.addEventListener("click", () => {
-      towerWrapper.hidden = !towerWrapper.hidden;
-      towerToggle.setAttribute("aria-expanded", String(!towerWrapper.hidden));
-    });
-  }
-});
+    return {
+      isMenuOpen,
+      toggleMenu,
+      scrollTo,
+      projects,
+      form,
+      submitForm,
+      isGameVisible,
+      toggleGame,
+    };
+  },
+}).mount("#app");
