@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 4. Обработка отправки контактной формы
   const contactForm = document.getElementById("contact-form");
   if (contactForm) {
-    contactForm.addEventListener("submit", (event) => {
+    contactForm.addEventListener("submit", async (event) => {
       event.preventDefault();
       const name = contactForm.elements["name"].value.trim();
       const email = contactForm.elements["email"].value.trim();
@@ -91,9 +91,27 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // TODO: заменить на реальный отправщик (EmailJS, fetch в API и т.п.)
-      alert("Спасибо! Ваше сообщение отправлено.");
-      contactForm.reset();
+      try {
+        // Отправка данных через FormSubmit
+        const response = await fetch("https://formsubmit.co/ajax/ruslan@mirvelov.ru", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({ name, email, message }),
+        });
+
+        if (response.ok) {
+          alert("Спасибо! Ваше сообщение отправлено.");
+          contactForm.reset();
+        } else {
+          alert("Произошла ошибка при отправке. Попробуйте позже.");
+        }
+      } catch (error) {
+        console.error("Ошибка отправки формы:", error);
+        alert("Произошла ошибка при отправке. Попробуйте позже.");
+      }
     });
   }
   // 5. Инициализация фоновой анимации пузырьков
