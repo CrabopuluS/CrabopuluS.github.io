@@ -105,12 +105,20 @@ document.addEventListener("DOMContentLoaded", () => {
         if (response.ok) {
           alert("Спасибо! Ваше сообщение отправлено.");
           contactForm.reset();
-        } else {
+          qd0an1-codex/locate-contact-input-data-storage
+          // В случае ошибки сервиса отправляем форму обычным способом
+          contactForm.submit();
+        }
+      } catch (error) {
+        console.error("Ошибка отправки формы:", error);
+        // При сетевой ошибке также отправляем форму напрямую
+        contactForm.submit();
           alert("Произошла ошибка при отправке. Попробуйте позже.");
         }
       } catch (error) {
         console.error("Ошибка отправки формы:", error);
         alert("Произошла ошибка при отправке. Попробуйте позже.");
+      main
       }
     });
   }
