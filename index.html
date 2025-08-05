@@ -13,33 +13,34 @@
 <body>
     <canvas id="bubbles-canvas" class="animated-background" aria-hidden="true"></canvas>
     <noscript>Для корректной работы сайта включите JavaScript.</noscript>
+    <div id="app">
     <header class="header">
         <nav class="nav container">
             <a href="#" class="logo" aria-label="Логотип RA">
                 <img src="images/Logo.png" alt="Логотип RA" loading="lazy">
             </a>
-            <button class="menu-toggle" aria-label="Меню" aria-expanded="false">&#9776;</button>
-            <ul class="nav-list">
-                <li><a href="#about">
+            <button class="menu-toggle" aria-label="Меню" :aria-expanded="isMenuOpen.toString()" @click="toggleMenu">&#9776;</button>
+            <ul class="nav-list" :class="{ open: isMenuOpen }">
+                <li><a href="#about" @click.prevent="scrollTo('about')">
                     <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <circle cx="12" cy="7" r="4"></circle>
                         <path d="M5.5 21a8.38 8.38 0 0 1 13 0"></path>
                     </svg>
                     <span>Обо мне</span>
                 </a></li>
-                <li><a href="#doing">
+                <li><a href="#doing" @click.prevent="scrollTo('doing')">
                     <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
                     </svg>
                     <span>Чем я занимаюсь</span>
                 </a></li>
-                <li><a href="#projects">
+                <li><a href="#projects" @click.prevent="scrollTo('projects')">
                     <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6l2 2h8a2 2 0 0 1 2 2z"></path>
                     </svg>
                     <span>Проекты</span>
                 </a></li>
-                <li><a href="#resume">
+                <li><a href="#resume" @click.prevent="scrollTo('resume')">
                     <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                         <polyline points="14 2 14 8 20 8"></polyline>
@@ -48,7 +49,7 @@
                     </svg>
                     <span>Резюме</span>
                 </a></li>
-                <li><a href="#contact">
+                <li><a href="#contact" @click.prevent="scrollTo('contact')">
                     <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                         <polyline points="22 6 12 13 2 6"></polyline>
@@ -153,7 +154,16 @@
             <div class="container">
                 <h2>Мои проекты</h2>
                 <p>Подборка реализованных решений, показывающих мой подход к созданию продуктов.</p>
-                <div class="projects-container"></div>
+                <div class="projects-container">
+                    <div class="project-card" v-for="(project, index) in projects" :key="index" :style="{ animationDelay: index * 0.2 + 's' }">
+                        <img :src="project.image" :alt="project.title" class="project-image" loading="lazy">
+                        <div class="project-info">
+                            <h3 class="project-title">{{ project.title }}</h3>
+                            <p class="project-desc">{{ project.description }}</p>
+                            <a :href="project.link" class="project-link btn" target="_blank" rel="noopener noreferrer">Перейти</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         <section id="resume" class="section resume">
@@ -208,21 +218,21 @@
         <section id="contact" class="section contact">
             <div class="container">
                 <h2>Контакты</h2>
-                <form id="contact-form" class="contact-form" action="https://formsubmit.co/ruslan@mirvelov.ru" method="post" novalidate>
+                <form id="contact-form" class="contact-form" action="https://formsubmit.co/ruslan@mirvelov.ru" method="post" novalidate @submit.prevent="submitForm">
                     <label for="name">Имя:</label>
-                    <input type="text" id="name" name="name" autocomplete="name" maxlength="100" required>
+                    <input type="text" id="name" name="name" autocomplete="name" maxlength="100" required v-model="form.name">
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" autocomplete="email" maxlength="100" required>
+                    <input type="email" id="email" name="email" autocomplete="email" maxlength="100" required v-model="form.email">
                     <label for="message">Сообщение:</label>
-                <textarea id="message" name="message" rows="4" maxlength="1000" required></textarea>
+                <textarea id="message" name="message" rows="4" maxlength="1000" required v-model="form.message"></textarea>
                 <button type="submit" class="btn">Отправить</button>
                 </form>
                 </div>
             </section>
         <section id="game" class="section game">
             <div class="container">
-                <button id="tower-toggle" class="btn" aria-expanded="false" type="button">Игра "Башенка"</button>
-                <div id="tower-wrapper" hidden>
+                <button id="tower-toggle" class="btn" :aria-expanded="isGameVisible.toString()" type="button" @click="toggleGame">Игра "Башенка"</button>
+                <div id="tower-wrapper" v-show="isGameVisible">
                     <iframe src="Tower/index.html" title="Tower game" class="game-frame" loading="lazy" sandbox="allow-same-origin allow-scripts"></iframe>
                 </div>
             </div>
@@ -231,8 +241,10 @@
     <footer class="footer">
         <p>&copy; 2025 Ruslan Mirvelov. Все права защищены.</p>
     </footer>
-    <script src="script.js" defer></script>
+    </div>
+    <script src="vue.global.js"></script>
     <script src="bubbles.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
 
