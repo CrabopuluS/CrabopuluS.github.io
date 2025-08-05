@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.googleapis.com https://fonts.gstatic.com;">
   <title>Stack game with Three.js and Cannon.js</title>
   <link rel="stylesheet" href="./style.css">
 </head>
@@ -24,8 +25,8 @@
 <div id="score">0</div>
 
   <!-- partial -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/cannon.js/0.6.2/cannon.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.min.js" integrity="sha256-qKlmw94LrCNjCVfots6xMwclvCiJoLLa2VLXEHl7oXk=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cannon.js/0.6.2/cannon.min.js" integrity="sha256-VOi2Rul9rvLP88evmfzQ/naNx059RkmPaKhpx9ydyQY=" crossorigin="anonymous" defer></script>
   <script src="./script.js" defer></script>
 
 </body>
