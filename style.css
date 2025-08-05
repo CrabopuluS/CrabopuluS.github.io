@@ -28,7 +28,7 @@ body {
   font-family: var(--font-sans);
   color: var(--color-text-primary);
   background: linear-gradient(135deg, var(--color-bg-primary) 0%, #141820 100%);
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.6;
   overflow-x: hidden;
   margin-left: 160px; /* место для более узкого вертикального меню */
@@ -122,6 +122,11 @@ body {
 .nav-list a:hover {
   color: var(--color-accent-blue);
   background: rgba(58, 141, 255, 0.15);
+}
+
+.nav-list a:focus {
+  outline: 2px solid var(--color-accent-blue);
+  outline-offset: 2px;
 }
 
 .nav-icon {

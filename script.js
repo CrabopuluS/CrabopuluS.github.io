@@ -82,9 +82,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (contactForm) {
     contactForm.addEventListener("submit", async (event) => {
       event.preventDefault();
-      const name = contactForm.elements["name"].value.trim();
-      const email = contactForm.elements["email"].value.trim();
-      const message = contactForm.elements["message"].value.trim();
+
+      const sanitize = (str) => str.replace(/[<>&]/g, "");
+      const name = sanitize(contactForm.elements["name"].value.trim());
+      const email = sanitize(contactForm.elements["email"].value.trim());
+      const message = sanitize(contactForm.elements["message"].value.trim());
 
       if (!name || !email || !message) {
         alert("Пожалуйста, заполните все поля.");
@@ -92,7 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       try {
-        // Отправка данных через FormSubmit
         const response = await fetch("https://formsubmit.co/ajax/ruslan@mirvelov.ru", {
           method: "POST",
           headers: {
@@ -105,20 +106,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (response.ok) {
           alert("Спасибо! Ваше сообщение отправлено.");
           contactForm.reset();
-          qd0an1-codex/locate-contact-input-data-storage
-          // В случае ошибки сервиса отправляем форму обычным способом
+        } else {
           contactForm.submit();
         }
       } catch (error) {
         console.error("Ошибка отправки формы:", error);
-        // При сетевой ошибке также отправляем форму напрямую
-        contactForm.submit();
-          alert("Произошла ошибка при отправке. Попробуйте позже.");
-        }
-      } catch (error) {
-        console.error("Ошибка отправки формы:", error);
         alert("Произошла ошибка при отправке. Попробуйте позже.");
-      main
+        contactForm.submit();
       }
     });
   }
