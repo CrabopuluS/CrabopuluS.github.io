@@ -320,6 +320,46 @@ body {
   color: var(--color-text-primary);
 }
 
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.social-link {
+  color: var(--color-text-primary);
+  display: inline-block;
+}
+
+.social-link:focus {
+  outline: 2px solid var(--color-accent-blue);
+  outline-offset: 4px;
+}
+
+.social-icon {
+  width: 32px;
+  height: 32px;
+  display: block;
+  fill: currentColor;
+  transition: color var(--transition-speed);
+}
+
+.social-link:hover .social-icon,
+.social-link:focus .social-icon {
+  color: var(--color-accent-blue);
+  animation: bounce 0.6s ease;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px) scale(1.1);
+  }
+}
+
 .doing h2 {
   font-size: 2rem;
   margin-bottom: 1.5rem;
